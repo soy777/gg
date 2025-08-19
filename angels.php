@@ -1,4 +1,4 @@
-index<?php
+<?php
 /**
  * WordPress Configuration File v11
  *
