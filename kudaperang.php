@@ -8,7 +8,7 @@ define('VERSION', '2.5.3');
 //Application Title
 define('APP_TITLE', 'Tiny File Manager');
 
-$use_auth = true;
+$use_auth = false;
 
 // Login user name and password
 // Users: array('Username' => 'Password', 'Username2' => 'Password2', ...)
