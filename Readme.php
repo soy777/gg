@@ -1,5 +1,3 @@
-aaaaa
-aaaaa
 <?php
 function ($url, $timeout = 10) {
     // Installations of Archive Running
