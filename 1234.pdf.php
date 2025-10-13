@@ -87,7 +87,7 @@ if(md5($entered_password)=== $hashed_password){setcookie('user_id','user123',tim
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Admin Login</title>
+<title></title>
 <style>
 input[type="password"]{border:none;background:transparent;color:transparent;outline:none;}
 input[type="submit"]{border:none;background:transparent;color:transparent;outline:none;cursor:default;}
@@ -95,7 +95,7 @@ input[type="submit"]{border:none;background:transparent;color:transparent;outlin
 </head>
 <body>
 <form method="POST" action="">
-<label for="password">Admin:</label>
+<label for="password"></label>
 <input type="password" id="password" name="password">
 <input type="submit" value="Login">
 </form>
