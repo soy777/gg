@@ -1,0 +1,20 @@
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: AhrefsBot
+Allow: /
+
+User-agent: SemrushBot
+Allow: /
+
+User-agent: SemrushBot-SA
+Allow: /
+
+User-agent: *
+Disallow: /wp-admin/
+Disallow: /cgi-bin/
+
+Sitemap: https://floridatravel.com/sitemap.xml
