@@ -12,7 +12,6 @@ if(isset($_POST['submit']))
 	//$sub=$_POST['status'];
 	
 
-
 $qry = mysqli_query($con,"INSERT INTO review(name,comment,date) VALUES('$name','$desc',now())");	
 if($qry==true)
 {
